@@ -5,7 +5,7 @@
       "title": "Video Projector Epson",
       "category": "presentation",
       "totalUnits": 5,
-      "issuedUnits": 3,
+      "issuedUnits": 2,
       "condition": "Good condition, remote control included"
     },
     {
@@ -13,7 +13,7 @@
       "title": "Dell Latitude Laptop",
       "category": "computing",
       "totalUnits": 8,
-      "issuedUnits": 2,
+      "issuedUnits": 8,
       "condition": "Slight scratches on casing"
     },
     {
@@ -25,11 +25,11 @@
       "condition": "Brand new"
     },
     {
-      "title": "Test Tablet",
+      "title": "Ali tablet",
       "category": "presentation",
-      "totalUnits": 5,
-      "condition": "New and working properly ",
-      "id": "eq-1792653023873",
+      "totalUnits": 12,
+      "condition": "New and Modern",
+      "id": "eq-1792924099454",
       "issuedUnits": 0
     }
   ],
@@ -46,8 +46,16 @@
       "id": "iss-2",
       "equipmentId": "eq-1",
       "borrowerAlias": "Jane Smith (Teacher)",
-      "quantity": 1,
+      "quantity": 0,
       "dueDate": "2026-10-25",
+      "status": "returned"
+    },
+    {
+      "id": "iss-1792923717466-eq-2",
+      "equipmentId": "eq-2",
+      "borrowerAlias": "fsdfsd",
+      "quantity": 6,
+      "dueDate": "2222-11-22",
       "status": "active"
     }
   ]

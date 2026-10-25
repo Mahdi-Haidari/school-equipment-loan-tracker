@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import Navbar from './components/Navbar'
-import Footer from './components/Footer'
 import Home from './pages/Home'
 import Equipment from './pages/Equipment'
 import IssueDesk from './pages/IssueDesk'
@@ -9,23 +8,35 @@ import ManageEquipment from './pages/ManageEquipment'
 import About from './pages/About'
 import Contact from './pages/Contact'
 
+const API_BASE_URL = 'https://school-equipment-loan-tracker.onrender.com'
+
+function Footer() {
+  return (
+    <footer className="mt-20 border-t border-slate-100 bg-white py-6 text-center text-xs font-bold text-slate-400 w-full">
+      <div className="max-w-[1600px] mx-auto px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <p>© 2026 Library Loan Desk Management Architecture. States verified.</p>
+        <p>Architected by <a href="https://your-portfolio.com" target="_blank" rel="noreferrer" className="text-[#2563EB] font-black underline hover:text-blue-700 transition-colors">Your Name</a></p>
+      </div>
+    </footer>
+  )
+}
 
 function App() {
   const [equipment, setEquipment] = useState([])
   const [issues, setIssues] = useState([])
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/equipment')
+    fetch(`${API_BASE_URL}/api/equipment`)
       .then(res => res.json())
       .then(data => setEquipment(data))
 
-    fetch('http://localhost:5000/api/issues')
+    fetch(`${API_BASE_URL}/api/issues`)
       .then(res => res.json())
       .then(data => setIssues(data))
   }, [])
 
   const handleResetData = () => {
-    fetch('http://localhost:5000/api/reset', { method: 'POST' })
+    fetch(`${API_BASE_URL}/api/reset`, { method: 'POST' })
       .then(res => res.json())
       .then(data => {
         setEquipment(data.equipment)
@@ -34,7 +45,7 @@ function App() {
   }
 
   const handleConfirmIssue = (newIssuesList) => {
-    fetch('http://localhost:5000/api/issues', {
+    fetch(`${API_BASE_URL}/api/issues`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(newIssuesList)
@@ -49,7 +60,7 @@ function App() {
   }
 
   const handleReturnUnits = (issueId, equipmentId, returnQty) => {
-    fetch('http://localhost:5000/api/issues/return', {
+    fetch(`${API_BASE_URL}/api/issues/return`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ issueId, equipmentId, returnQty })
@@ -64,7 +75,7 @@ function App() {
   }
 
   const handleAddEquipment = (newItem) => {
-    fetch('http://localhost:5000/api/equipment', {
+    fetch(`${API_BASE_URL}/api/equipment`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(newItem)
@@ -72,7 +83,7 @@ function App() {
       .then(res => res.json())
       .then(data => {
         if (data.success) {
-          fetch('http://localhost:5000/api/equipment')
+          fetch(`${API_BASE_URL}/api/equipment`)
             .then(res => res.json())
             .then(d => setEquipment(d))
         }
@@ -80,7 +91,7 @@ function App() {
   }
 
   const handleEditEquipment = (updatedItem) => {
-    fetch(`http://localhost:5000/api/equipment/${updatedItem.id}`, {
+    fetch(`${API_BASE_URL}/api/equipment/${updatedItem.id}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(updatedItem)
@@ -94,7 +105,7 @@ function App() {
   }
 
   const handleDeleteEquipment = (id) => {
-    fetch(`http://localhost:5000/api/equipment/${id}`, { method: 'DELETE' })
+    fetch(`${API_BASE_URL}/api/equipment/${id}`, { method: 'DELETE' })
       .then(res => res.json())
       .then(data => {
         if (data.success) {
